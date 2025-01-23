@@ -21,3 +21,22 @@ export interface WhopData {
   top_communities: Community[];
   updated_at: string;
 }
+
+export interface Product {
+  id: string;
+  name: string;
+  category: 'gambling' | 'trading' | 'betting' | 'social media' | 'sales';
+  dailyRevenue: number;
+  valueProposition: string;
+  description: string;
+  metrics: {
+    monthlyUsers: number;
+    averageOrderValue: number;
+    retentionRate: string;
+  };
+  niche: {
+    target: string;
+    competition: string;
+    marketSize: string;
+  };
+}
