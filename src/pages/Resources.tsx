@@ -1,4 +1,28 @@
 import { Link } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
+const dummyResources = [
+  {
+    id: 1,
+    title: "Documentation",
+    description: "Access comprehensive guides and documentation.",
+    links: [
+      { title: "Getting Started Guide", url: "#" },
+      { title: "API Documentation", url: "#" },
+      { title: "Best Practices", url: "#" }
+    ]
+  },
+  {
+    id: 2,
+    title: "Tools",
+    description: "Essential tools to help you succeed.",
+    links: [
+      { title: "Analytics Dashboard", url: "#" },
+      { title: "Revenue Calculator", url: "#" },
+      { title: "Performance Tracker", url: "#" }
+    ]
+  }
+];
 
 const Resources = () => {
   return (
@@ -9,14 +33,27 @@ const Resources = () => {
           <h1 className="text-4xl font-bold">Resources</h1>
         </div>
         <div className="grid gap-6">
-          <div className="p-6 bg-white rounded-lg shadow-sm">
-            <h2 className="text-xl font-semibold mb-4">Documentation</h2>
-            <p className="text-gray-600">Access comprehensive guides and documentation.</p>
-          </div>
-          <div className="p-6 bg-white rounded-lg shadow-sm">
-            <h2 className="text-xl font-semibold mb-4">Tools</h2>
-            <p className="text-gray-600">Essential tools to help you succeed.</p>
-          </div>
+          {dummyResources.map((resource) => (
+            <Card key={resource.id}>
+              <CardHeader>
+                <CardTitle>{resource.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 mb-4">{resource.description}</p>
+                <div className="space-y-2">
+                  {resource.links.map((link) => (
+                    <a
+                      key={link.title}
+                      href={link.url}
+                      className="block p-2 hover:bg-gray-50 rounded-lg transition-colors"
+                    >
+                      <span className="text-primary">{link.title}</span>
+                    </a>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </div>
     </div>

@@ -1,4 +1,22 @@
 import { BookOpen } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
+const dummyTrainings = [
+  {
+    id: 1,
+    title: "Getting Started",
+    description: "Learn the basics of our platform and how to maximize your earnings.",
+    modules: ["Platform Overview", "Account Setup", "First Steps"],
+    duration: "2 hours"
+  },
+  {
+    id: 2,
+    title: "Advanced Techniques",
+    description: "Master advanced strategies for better performance.",
+    modules: ["Advanced Analytics", "Growth Strategies", "Optimization"],
+    duration: "4 hours"
+  }
+];
 
 const Training = () => {
   return (
@@ -9,14 +27,25 @@ const Training = () => {
           <h1 className="text-4xl font-bold">Training</h1>
         </div>
         <div className="grid gap-6 md:grid-cols-2">
-          <div className="p-6 bg-white rounded-lg shadow-sm">
-            <h2 className="text-xl font-semibold mb-4">Getting Started</h2>
-            <p className="text-gray-600">Learn the basics of our platform and how to maximize your earnings.</p>
-          </div>
-          <div className="p-6 bg-white rounded-lg shadow-sm">
-            <h2 className="text-xl font-semibold mb-4">Advanced Techniques</h2>
-            <p className="text-gray-600">Master advanced strategies for better performance.</p>
-          </div>
+          {dummyTrainings.map((training) => (
+            <Card key={training.id}>
+              <CardHeader>
+                <CardTitle>{training.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 mb-4">{training.description}</p>
+                <div className="space-y-2">
+                  <p className="text-sm font-medium">Modules:</p>
+                  <ul className="list-disc list-inside text-sm text-gray-600">
+                    {training.modules.map((module) => (
+                      <li key={module}>{module}</li>
+                    ))}
+                  </ul>
+                  <p className="text-sm text-gray-500 mt-4">Duration: {training.duration}</p>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </div>
     </div>
