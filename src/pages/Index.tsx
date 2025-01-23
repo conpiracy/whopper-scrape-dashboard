@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Product } from "../../libs/shared/types";
 import { Card, CardContent } from "@/components/ui/card";
 import { ChevronDown } from "lucide-react";
+import { Link } from "react-router-dom";
 import {
   Accordion,
   AccordionContent,
@@ -48,18 +49,18 @@ const Index = () => {
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-2xl font-bold text-white">Info Radar</h1>
           <div className="flex gap-4">
-            <button className="bg-orange-500 px-4 py-2 rounded-lg flex items-center gap-2">
+            <Link to="/" className="bg-orange-500 px-4 py-2 rounded-lg flex items-center gap-2">
               Dashboard
-            </button>
-            <button className="text-gray-400 px-4 py-2 rounded-lg flex items-center gap-2">
+            </Link>
+            <Link to="/niche-analysis" className="text-gray-400 px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-gray-800">
               Niche Analysis
-            </button>
-            <button className="text-gray-400 px-4 py-2 rounded-lg flex items-center gap-2">
+            </Link>
+            <Link to="/training" className="text-gray-400 px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-gray-800">
               Training
-            </button>
-            <button className="text-gray-400 px-4 py-2 rounded-lg flex items-center gap-2">
-              Analytics
-            </button>
+            </Link>
+            <Link to="/ai-chat" className="text-gray-400 px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-gray-800">
+              AI Chat
+            </Link>
           </div>
         </div>
 
