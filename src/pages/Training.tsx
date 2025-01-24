@@ -1,52 +1,114 @@
-import { BookOpen } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { MainNav } from "@/components/MainNav";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-const dummyTrainings = [
+const marketingTopics = [
   {
-    id: 1,
-    title: "Getting Started",
-    description: "Learn the basics of our platform and how to maximize your earnings.",
-    modules: ["Platform Overview", "Account Setup", "First Steps"],
-    duration: "2 hours"
+    id: "fundamentals",
+    title: "Marketing Fundamentals",
+    sections: [
+      {
+        title: "Understanding Your Market",
+        content: "Learn how to identify and analyze your target market, create buyer personas, and understand market segmentation.",
+      },
+      {
+        title: "Brand Development",
+        content: "Master the art of building a strong brand identity, developing your unique value proposition, and creating brand guidelines.",
+      },
+      {
+        title: "Marketing Strategy",
+        content: "Develop comprehensive marketing strategies, set SMART goals, and create effective marketing plans.",
+      },
+    ],
   },
   {
-    id: 2,
-    title: "Advanced Techniques",
-    description: "Master advanced strategies for better performance.",
-    modules: ["Advanced Analytics", "Growth Strategies", "Optimization"],
-    duration: "4 hours"
-  }
+    id: "digital",
+    title: "Digital Marketing",
+    sections: [
+      {
+        title: "Social Media Marketing",
+        content: "Learn platform-specific strategies for Instagram, TikTok, YouTube, and other social media platforms.",
+      },
+      {
+        title: "Content Marketing",
+        content: "Master content creation, content calendars, and content distribution strategies.",
+      },
+      {
+        title: "SEO Fundamentals",
+        content: "Understand search engine optimization, keyword research, and on-page optimization techniques.",
+      },
+    ],
+  },
+  {
+    id: "analytics",
+    title: "Analytics & Optimization",
+    sections: [
+      {
+        title: "Data Analysis",
+        content: "Learn how to track, measure, and analyze marketing metrics and KPIs.",
+      },
+      {
+        title: "Conversion Optimization",
+        content: "Master A/B testing, landing page optimization, and conversion rate optimization.",
+      },
+      {
+        title: "ROI Measurement",
+        content: "Understand how to calculate and improve marketing ROI across different channels.",
+      },
+    ],
+  },
 ];
 
 const Training = () => {
   return (
-    <div className="min-h-screen p-8 bg-gray-100">
-      <div className="max-w-4xl mx-auto">
-        <div className="flex items-center gap-3 mb-8">
-          <BookOpen className="w-8 h-8 text-primary" />
-          <h1 className="text-4xl font-bold">Training</h1>
+    <div className="min-h-screen bg-[#0a0a0a] text-white p-8">
+      <div className="max-w-7xl mx-auto">
+        <MainNav />
+        
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold mb-4">Marketing Training Hub</h1>
+          <p className="text-gray-400">Comprehensive guides and resources for modern marketers</p>
         </div>
-        <div className="grid gap-6 md:grid-cols-2">
-          {dummyTrainings.map((training) => (
-            <Card key={training.id}>
-              <CardHeader>
-                <CardTitle>{training.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 mb-4">{training.description}</p>
-                <div className="space-y-2">
-                  <p className="text-sm font-medium">Modules:</p>
-                  <ul className="list-disc list-inside text-sm text-gray-600">
-                    {training.modules.map((module) => (
-                      <li key={module}>{module}</li>
-                    ))}
-                  </ul>
-                  <p className="text-sm text-gray-500 mt-4">Duration: {training.duration}</p>
-                </div>
-              </CardContent>
-            </Card>
+
+        <Tabs defaultValue="fundamentals" className="space-y-8">
+          <TabsList className="bg-[#1A1F2C] border-b border-gray-800">
+            {marketingTopics.map((topic) => (
+              <TabsTrigger
+                key={topic.id}
+                value={topic.id}
+                className="data-[state=active]:bg-[#9b87f5] data-[state=active]:text-white"
+              >
+                {topic.title}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+
+          {marketingTopics.map((topic) => (
+            <TabsContent key={topic.id} value={topic.id} className="space-y-6">
+              {topic.sections.map((section, index) => (
+                <Card key={index} className="bg-[#1A1F2C] border-gray-800">
+                  <CardHeader>
+                    <CardTitle className="text-white">{section.title}</CardTitle>
+                    <CardDescription className="text-gray-400">
+                      {section.content}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <button className="text-[#9b87f5] hover:text-[#7E69AB] transition-colors">
+                      Start Learning →
+                    </button>
+                  </CardContent>
+                </Card>
+              ))}
+            </TabsContent>
           ))}
-        </div>
+        </Tabs>
       </div>
     </div>
   );
