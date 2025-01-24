@@ -927,6 +927,7 @@ const categories = ["All", "Gambling", "Trading", "Betting", "Social media", "Sa
 
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const isMobile = useIsMobile();
 
   const filteredProducts = dummyProducts.filter(product => 
     selectedCategory === "All" || 
@@ -934,26 +935,26 @@ const Index = () => {
   );
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white p-8">
+    <div className="min-h-screen bg-[#0a0a0a] text-white p-4 md:p-8">
       <div className="max-w-7xl mx-auto">
         <MainNav />
 
         <div className="mb-8">
-          <h2 className="text-4xl font-bold mb-2">Top Products</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-2">Top Products</h2>
           <p className="text-gray-400">
             Discover the highest-performing info products across different niches
           </p>
         </div>
 
-        <div className="flex gap-4 mb-8">
+        <div className={`flex ${isMobile ? 'flex-wrap' : ''} gap-2 md:gap-4 mb-8`}>
           {categories.map((category) => (
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`px-4 py-2 rounded-lg transition-colors ${
+              className={`px-3 md:px-4 py-2 rounded-lg transition-colors whitespace-nowrap text-sm md:text-base ${
                 selectedCategory === category
-                  ? "bg-[#9b87f5] text-white"
-                  : "text-gray-400 hover:bg-gray-800"
+                  ? 'bg-[#9b87f5] text-white'
+                  : 'text-gray-400 hover:bg-gray-800'
               }`}
             >
               {category}
@@ -961,7 +962,7 @@ const Index = () => {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {filteredProducts.map((product) => (
             <Accordion type="single" collapsible key={product.id}>
               <AccordionItem value={product.id} className="border-none">
@@ -970,13 +971,13 @@ const Index = () => {
                     <CardContent className="p-4">
                       <div className="flex justify-between items-start w-full">
                         <div>
-                          <h3 className="text-xl font-semibold mb-2">{product.name}</h3>
-                          <div className="flex items-center gap-4">
+                          <h3 className="text-lg md:text-xl font-semibold mb-2 text-left">{product.name}</h3>
+                          <div className="flex flex-wrap items-center gap-2 md:gap-4">
                             <span className="text-[#9b87f5] bg-[#9b87f5]/10 px-2 py-1 rounded text-sm">
                               {product.category}
                             </span>
-                            <span className="text-gray-400">
-                              Daily Revenue: ${product.dailyRevenue.toLocaleString()}
+                            <span className="text-gray-400 text-sm">
+                              ${product.dailyRevenue.toLocaleString()}/day
                             </span>
                           </div>
                         </div>
@@ -988,36 +989,36 @@ const Index = () => {
                     <CardContent className="pt-0 pb-4">
                       <div className="border-t border-gray-800 pt-4 mt-2">
                         <h4 className="font-semibold mb-2">Value Proposition</h4>
-                        <p className="text-gray-400 mb-4">{product.valueProposition}</p>
+                        <p className="text-gray-400 mb-4 text-sm md:text-base">{product.valueProposition}</p>
                         
                         <h4 className="font-semibold mb-2">Key Metrics</h4>
-                        <div className="grid grid-cols-3 gap-4 mb-4">
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
                           <div>
-                            <p className="text-gray-400">Monthly Users</p>
+                            <p className="text-gray-400 text-sm">Monthly Users</p>
                             <p className="font-semibold">{product.metrics.monthlyUsers.toLocaleString()}</p>
                           </div>
                           <div>
-                            <p className="text-gray-400">Avg. Order Value</p>
+                            <p className="text-gray-400 text-sm">Avg. Order Value</p>
                             <p className="font-semibold">${product.metrics.averageOrderValue}</p>
                           </div>
                           <div>
-                            <p className="text-gray-400">Retention Rate</p>
+                            <p className="text-gray-400 text-sm">Retention Rate</p>
                             <p className="font-semibold">{product.metrics.retentionRate}</p>
                           </div>
                         </div>
 
                         <h4 className="font-semibold mb-2">Niche Analysis</h4>
-                        <div className="grid grid-cols-3 gap-4">
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                           <div>
-                            <p className="text-gray-400">Target Market</p>
+                            <p className="text-gray-400 text-sm">Target Market</p>
                             <p className="font-semibold">{product.niche.target}</p>
                           </div>
                           <div>
-                            <p className="text-gray-400">Competition</p>
+                            <p className="text-gray-400 text-sm">Competition</p>
                             <p className="font-semibold">{product.niche.competition}</p>
                           </div>
                           <div>
-                            <p className="text-gray-400">Market Size</p>
+                            <p className="text-gray-400 text-sm">Market Size</p>
                             <p className="font-semibold">{product.niche.marketSize}</p>
                           </div>
                         </div>
