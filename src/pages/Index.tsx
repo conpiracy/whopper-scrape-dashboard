@@ -3,6 +3,7 @@ import { Product } from "../../libs/shared/types";
 import { Card, CardContent } from "@/components/ui/card";
 import { ChevronDown } from "lucide-react";
 import { MainNav } from "@/components/MainNav";
+import { useIsMobile } from "@/hooks/use-mobile";
 import {
   Accordion,
   AccordionContent,
