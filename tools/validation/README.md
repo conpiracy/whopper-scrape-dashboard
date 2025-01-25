@@ -1,4 +1,4 @@
 # Validation Scripts
 
-This folder will contain validation scripts for ensuring data integrity.
-Add your validation logic and data processing scripts here.
+This directory contains validation scripts to ensure data integrity.
+These scripts validate the output of scrapers before storing in the database.
