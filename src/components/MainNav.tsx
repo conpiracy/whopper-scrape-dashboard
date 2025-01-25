@@ -20,11 +20,11 @@ export const MainNav = () => {
   return (
     <div className="flex flex-col w-full mb-8">
       <div className="flex items-center justify-between w-full mb-4">
-        <h1 className="text-2xl font-bold text-white">Info Radar</h1>
+        <h1 className="text-2xl font-bold text-foreground">Info Radar</h1>
         {isMobile && (
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="p-2 text-gray-400 hover:bg-gray-800 rounded-lg"
+            className="p-2 text-muted-foreground hover:bg-muted rounded-lg"
           >
             <Menu className="w-6 h-6" />
           </button>
@@ -40,8 +40,8 @@ export const MainNav = () => {
             to={item.path}
             className={`px-4 py-2 rounded-lg flex items-center gap-2 transition-colors ${
               isActive(item.path)
-                ? 'bg-[#9b87f5] text-white'
-                : 'text-gray-400 hover:bg-gray-800'
+                ? 'bg-primary text-primary-foreground'
+                : 'text-muted-foreground hover:bg-muted'
             } ${isMobile ? 'w-full' : ''}`}
           >
             <item.icon className="w-4 h-4" />

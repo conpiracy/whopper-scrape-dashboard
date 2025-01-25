@@ -11,7 +11,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-// Dummy data matching the screenshot
 const dummyProducts: Product[] = [
   // Gambling Products
   {
@@ -936,13 +935,13 @@ const Index = () => {
   );
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white p-4 md:p-8">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-8">
       <div className="max-w-7xl mx-auto">
         <MainNav />
 
         <div className="mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold mb-2">Top Products</h2>
-          <p className="text-gray-400">
+          <h2 className="text-3xl md:text-4xl font-bold mb-2 text-foreground">Top Products</h2>
+          <p className="text-muted-foreground">
             Discover the highest-performing info products across different niches
           </p>
         </div>
@@ -954,8 +953,8 @@ const Index = () => {
               onClick={() => setSelectedCategory(category)}
               className={`px-3 md:px-4 py-2 rounded-lg transition-colors whitespace-nowrap text-sm md:text-base ${
                 selectedCategory === category
-                  ? 'bg-[#9b87f5] text-white'
-                  : 'text-gray-400 hover:bg-gray-800'
+                  ? 'bg-primary text-primary-foreground'
+                  : 'text-muted-foreground hover:bg-muted'
               }`}
             >
               {category}
@@ -967,60 +966,60 @@ const Index = () => {
           {filteredProducts.map((product) => (
             <Accordion type="single" collapsible key={product.id}>
               <AccordionItem value={product.id} className="border-none">
-                <Card className="bg-[#1A1F2C] border-gray-800">
+                <Card className="bg-card border-border hover:border-primary/50 transition-colors">
                   <AccordionTrigger className="w-full">
                     <CardContent className="p-4">
                       <div className="flex justify-between items-start w-full">
                         <div>
-                          <h3 className="text-lg md:text-xl font-semibold mb-2 text-left">{product.name}</h3>
+                          <h3 className="text-lg md:text-xl font-semibold mb-2 text-left text-card-foreground">{product.name}</h3>
                           <div className="flex flex-wrap items-center gap-2 md:gap-4">
-                            <span className="text-[#9b87f5] bg-[#9b87f5]/10 px-2 py-1 rounded text-sm">
+                            <span className="text-primary bg-primary/10 px-2 py-1 rounded text-sm font-medium">
                               {product.category}
                             </span>
-                            <span className="text-gray-400 text-sm">
+                            <span className="text-muted-foreground text-sm">
                               ${product.dailyRevenue.toLocaleString()}/day
                             </span>
                           </div>
                         </div>
-                        <ChevronDown className="h-4 w-4 shrink-0 text-gray-500 transition-transform duration-200" />
+                        <ChevronDown className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200" />
                       </div>
                     </CardContent>
                   </AccordionTrigger>
                   <AccordionContent>
                     <CardContent className="pt-0 pb-4">
-                      <div className="border-t border-gray-800 pt-4 mt-2">
-                        <h4 className="font-semibold mb-2">Value Proposition</h4>
-                        <p className="text-gray-400 mb-4 text-sm md:text-base">{product.valueProposition}</p>
+                      <div className="border-t border-border pt-4 mt-2">
+                        <h4 className="font-semibold mb-2 text-card-foreground">Value Proposition</h4>
+                        <p className="text-muted-foreground mb-4 text-sm md:text-base">{product.valueProposition}</p>
                         
-                        <h4 className="font-semibold mb-2">Key Metrics</h4>
+                        <h4 className="font-semibold mb-2 text-card-foreground">Key Metrics</h4>
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
                           <div>
-                            <p className="text-gray-400 text-sm">Monthly Users</p>
-                            <p className="font-semibold">{product.metrics.monthlyUsers.toLocaleString()}</p>
+                            <p className="text-muted-foreground text-sm">Monthly Users</p>
+                            <p className="font-semibold text-card-foreground">{product.metrics.monthlyUsers.toLocaleString()}</p>
                           </div>
                           <div>
-                            <p className="text-gray-400 text-sm">Avg. Order Value</p>
-                            <p className="font-semibold">${product.metrics.averageOrderValue}</p>
+                            <p className="text-muted-foreground text-sm">Avg. Order Value</p>
+                            <p className="font-semibold text-card-foreground">${product.metrics.averageOrderValue}</p>
                           </div>
                           <div>
-                            <p className="text-gray-400 text-sm">Retention Rate</p>
-                            <p className="font-semibold">{product.metrics.retentionRate}</p>
+                            <p className="text-muted-foreground text-sm">Retention Rate</p>
+                            <p className="font-semibold text-card-foreground">{product.metrics.retentionRate}</p>
                           </div>
                         </div>
 
-                        <h4 className="font-semibold mb-2">Niche Analysis</h4>
+                        <h4 className="font-semibold mb-2 text-card-foreground">Niche Analysis</h4>
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                           <div>
-                            <p className="text-gray-400 text-sm">Target Market</p>
-                            <p className="font-semibold">{product.niche.target}</p>
+                            <p className="text-muted-foreground text-sm">Target Market</p>
+                            <p className="font-semibold text-card-foreground">{product.niche.target}</p>
                           </div>
                           <div>
-                            <p className="text-gray-400 text-sm">Competition</p>
-                            <p className="font-semibold">{product.niche.competition}</p>
+                            <p className="text-muted-foreground text-sm">Competition</p>
+                            <p className="font-semibold text-card-foreground">{product.niche.competition}</p>
                           </div>
                           <div>
-                            <p className="text-gray-400 text-sm">Market Size</p>
-                            <p className="font-semibold">{product.niche.marketSize}</p>
+                            <p className="text-muted-foreground text-sm">Market Size</p>
+                            <p className="font-semibold text-card-foreground">{product.niche.marketSize}</p>
                           </div>
                         </div>
                       </div>
