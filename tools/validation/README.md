@@ -1,4 +1,9 @@
-# Validation Scripts
+# Validation Tools
 
-This directory contains validation scripts to ensure data integrity.
-These scripts validate the output of scrapers before storing in the database.
+This directory contains validation scripts and tools for ensuring data integrity.
+
+## Features
+- Data validation scripts
+- Schema validation
+- Error logging
+- Quality assurance tools

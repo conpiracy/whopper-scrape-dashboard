@@ -1,4 +1,14 @@
-# Scrapers
+# Data Scrapers
 
-This folder will contain the Python scraping code.
-Place your scraping scripts and related Python files here.
+This directory contains the data scraping services written in Python.
+
+## Features
+- Web scraping scripts
+- Data validation
+- Database integration
+- Scheduled jobs
+
+## Running scrapers
+```bash
+poetry run scrapers
+```

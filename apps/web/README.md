@@ -1,4 +1,19 @@
 # Web Application
 
-This folder contains the main web application (currently using Vite + React).
-You can later modify this to use Next.js or other frameworks.
+This is the main web application built with Vite + React. It serves as the frontend interface for our platform.
+
+## Features
+- Dashboard for data visualization
+- AI Chat interface
+- Training resources
+- Niche analysis tools
+
+## Development
+```bash
+nx serve web
+```
+
+## Building
+```bash
+nx build web
+```
