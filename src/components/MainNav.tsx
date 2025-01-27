@@ -11,6 +11,7 @@ export const MainNav = () => {
 
   const navItems = [
     { label: "Home", path: "/" },
+    { label: "Dashboard", path: "/dashboard" },
     { label: "Features", path: "/features" },
     { label: "Data Insights", path: "/insights" },
     { label: "Testimonials", path: "/testimonials" },
