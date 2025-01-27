@@ -1,54 +1,103 @@
 import { Link, useLocation } from "react-router-dom";
-import { LayoutDashboard, BarChart3, BookOpen, MessageSquare, Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
-import { useIsMobile } from "@/hooks/use-mobile";
+import { Button } from "./ui/button";
+import { WaitlistDialog } from "./WaitlistDialog";
 
 export const MainNav = () => {
-  const location = useLocation();
-  const isMobile = useIsMobile();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  
-  const isActive = (path: string) => location.pathname === path;
+  const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
+  const location = useLocation();
 
   const navItems = [
-    { path: "/", icon: LayoutDashboard, label: "Dashboard" },
-    { path: "/niche-analysis", icon: BarChart3, label: "Niche Analysis" },
-    { path: "/training", icon: BookOpen, label: "Training" },
-    { path: "/ai-chat", icon: MessageSquare, label: "AI Chat" },
+    { label: "Home", path: "/" },
+    { label: "Features", path: "/features" },
+    { label: "Data Insights", path: "/insights" },
+    { label: "Testimonials", path: "/testimonials" },
   ];
-  
+
   return (
-    <div className="flex flex-col w-full mb-8">
-      <div className="flex items-center justify-between w-full mb-4">
-        <h1 className="text-2xl font-bold text-foreground">Info Radar</h1>
-        {isMobile && (
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="p-2 text-muted-foreground hover:bg-muted rounded-lg"
-          >
-            <Menu className="w-6 h-6" />
-          </button>
-        )}
-      </div>
-      
-      <nav className={`${isMobile ? (isMenuOpen ? 'flex' : 'hidden') : 'flex'} ${
-        isMobile ? 'flex-col space-y-2' : 'flex-row gap-4'
-      }`}>
-        {navItems.map((item) => (
-          <Link
-            key={item.path}
-            to={item.path}
-            className={`px-4 py-2 rounded-lg flex items-center gap-2 transition-colors ${
-              isActive(item.path)
-                ? 'bg-primary text-primary-foreground'
-                : 'text-muted-foreground hover:bg-muted'
-            } ${isMobile ? 'w-full' : ''}`}
-          >
-            <item.icon className="w-4 h-4" />
-            {item.label}
-          </Link>
-        ))}
-      </nav>
-    </div>
+    <>
+      <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b">
+        <nav className="container mx-auto px-4">
+          <div className="flex items-center justify-between h-16">
+            <Link to="/" className="flex items-center space-x-2">
+              <span className="text-2xl font-bold text-primary">Info Radar</span>
+            </Link>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-8">
+              {navItems.map((item) => (
+                <Link
+                  key={item.label}
+                  to={item.path}
+                  className={`text-sm font-medium transition-colors hover:text-primary ${
+                    location.pathname === item.path
+                      ? "text-primary"
+                      : "text-muted-foreground"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              ))}
+              <Button
+                onClick={() => setIsWaitlistOpen(true)}
+                className="bg-primary hover:bg-primary/90"
+              >
+                Get Started
+              </Button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden p-2 text-muted-foreground hover:text-foreground"
+            >
+              {isMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
+            </button>
+          </div>
+
+          {/* Mobile Navigation */}
+          {isMenuOpen && (
+            <div className="md:hidden py-4 animate-fade-in">
+              <div className="flex flex-col space-y-4">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.label}
+                    to={item.path}
+                    className={`text-sm font-medium transition-colors hover:text-primary ${
+                      location.pathname === item.path
+                        ? "text-primary"
+                        : "text-muted-foreground"
+                    }`}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+                <Button
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    setIsWaitlistOpen(true);
+                  }}
+                  className="bg-primary hover:bg-primary/90 w-full"
+                >
+                  Get Started
+                </Button>
+              </div>
+            </div>
+          )}
+        </nav>
+      </header>
+
+      <WaitlistDialog
+        open={isWaitlistOpen}
+        onOpenChange={setIsWaitlistOpen}
+      />
+    </>
   );
 };
