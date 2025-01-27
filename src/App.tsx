@@ -8,7 +8,8 @@ import Training from "./pages/Training";
 import Resources from "./pages/Resources";
 import AiChat from "./pages/AiChat";
 import NicheAnalysis from "./pages/NicheAnalysis";
-import Dashboard from "./pages/Dashboard"; // Add Dashboard import
+import Dashboard from "./pages/Dashboard";
+import DataInsights from "./pages/DataInsights";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/resources" element={<Resources />} />
           <Route path="/ai-chat" element={<AiChat />} />
           <Route path="/niche-analysis" element={<NicheAnalysis />} />
+          <Route path="/data-insights" element={<DataInsights />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

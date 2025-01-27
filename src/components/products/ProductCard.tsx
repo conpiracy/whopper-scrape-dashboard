@@ -1,6 +1,8 @@
 import { Product } from "../../../libs/shared/types";
 import { Card, CardContent } from "@/components/ui/card";
-import { ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ChevronDown, LineChart } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import {
   AccordionContent,
   AccordionItem,
@@ -12,6 +14,12 @@ interface ProductCardProps {
 }
 
 export const ProductCard = ({ product }: ProductCardProps) => {
+  const navigate = useNavigate();
+
+  const handleAnalyze = () => {
+    navigate("/data-insights", { state: { product } });
+  };
+
   return (
     <AccordionItem value={product.id} className="border-none">
       <Card className="bg-card border-border hover:border-primary/50 transition-colors">
@@ -66,7 +74,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
               </div>
 
               <h4 className="font-semibold mb-2 text-card-foreground">Niche Analysis</h4>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
                 <div>
                   <p className="text-muted-foreground text-sm">Target Market</p>
                   <p className="font-semibold text-card-foreground">{product.niche.target}</p>
@@ -82,6 +90,17 @@ export const ProductCard = ({ product }: ProductCardProps) => {
                   <p className="font-semibold text-card-foreground">{product.niche.marketSize}</p>
                 </div>
               </div>
+
+              <Button 
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleAnalyze();
+                }}
+                className="w-full"
+              >
+                <LineChart className="w-4 h-4 mr-2" />
+                Analyze Product
+              </Button>
             </div>
           </CardContent>
         </AccordionContent>
